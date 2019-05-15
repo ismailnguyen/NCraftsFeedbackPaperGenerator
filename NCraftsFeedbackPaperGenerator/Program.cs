@@ -24,23 +24,21 @@ namespace NCraftsFeedbackPaperGenerator
                     Renderer.PrintOptions.PaperOrientation = PdfPrintOptions.PdfPaperOrientation.Landscape;
 
                     var pdf = Renderer.RenderHtmlAsPdf($@"
-                        <h1>{ form.title }</<h1>
-                        <h2>{ form.speakerName }</h2>
+                        <h1 style='text-align:center;font-size:56px;'>{ form.title }</<h1>
+                        <h2 style='text-align:center;font-size:48px;'>{ form.speakerName }</h2>
 
-                        <h3>Fun</h3>
-                        <div style='width: 3000px; height: 1000px;position: relative;border-bottom: 5px solid #262627;border-left: 5px solid #262627;'></div>
-                        <h3>Useful</h3>
+                        <h3 style='font-size:20px;'>Fun</h3>
+                        <div style='width: 3000px; height: 900px;position: relative;border-bottom: 5px solid #262627;border-left: 5px solid #262627;'></div>
+                        <h3 style='text-align:center;font-size:20px;'>Useful</h3>
                     ");
 
-                    pdf.WatermarkAllPages("<h2 style='color:#39c8b7'>{ NewCrafts }</h2>", PdfDocument.WaterMarkLocation.MiddleCenter, 50, -45, "https://ncrafts.io");
-
                     pdf.SaveAs(fileName);
+
+                    Console.WriteLine($"PDF file created for { fileName }");
                 }
                 catch(Exception e) {
                     Console.WriteLine($"Error while createing { fileName }", e);
                 }
-
-                Console.WriteLine($"PDF file created for { fileName }");
             }
 
             Console.ReadKey();
