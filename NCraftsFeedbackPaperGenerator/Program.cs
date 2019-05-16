@@ -14,7 +14,7 @@ namespace NCraftsFeedbackPaperGenerator
 
             foreach (var form in feedbackForms)
             {
-                var fileName = $"{ form.speakerName.Replace(" ", "_") }-{ form.title.Replace(" ", "_") }.pdf";
+                var fileName = $"{ form.speakerName.Replace(" ", "_") }-{ form.title.Replace(" ", "_").Replace(":", "-").Replace("?", "").Replace("|", "").Replace("&", "") }.pdf";
 
                 try
                 {
@@ -27,9 +27,9 @@ namespace NCraftsFeedbackPaperGenerator
                         <h1 style='text-align:center;font-size:56px;'>{ form.title }</<h1>
                         <h2 style='text-align:center;font-size:48px;'>{ form.speakerName }</h2>
 
-                        <h3 style='font-size:20px;'>Fun</h3>
+                        <h3 style='font-size:20px;'>Message</h3>
                         <div style='width: 3000px; height: 900px;position: relative;border-bottom: 5px solid #262627;border-left: 5px solid #262627;'></div>
-                        <h3 style='text-align:center;font-size:20px;'>Useful</h3>
+                        <h3 style='text-align:center;font-size:20px;'>Delivery</h3>
                     ");
 
                     pdf.SaveAs(fileName);
@@ -37,7 +37,7 @@ namespace NCraftsFeedbackPaperGenerator
                     Console.WriteLine($"PDF file created for { fileName }");
                 }
                 catch(Exception e) {
-                    Console.WriteLine($"Error while createing { fileName }", e);
+                    Console.WriteLine($"Error while createing { fileName } : { e.Message }");
                 }
             }
 
